@@ -106,17 +106,18 @@ function setTimer(time = 200) {
 // >>> 3 options
 
 setBtn.addEventListener("click", () => {
-  scrollAmmountInput.value.length > 0
-    ? localStorage.setItem("scrollAmmount", scrollAmmountInput.value + "")
-    : localStorage.setItem("scrollAmmount", scrollAmmount);
-  speedInput.value.length > 0
-    ? localStorage.setItem("currentTime", speedInput.value + "")
-    : localStorage.setItem("currentTime", currentTime);
-  scrollAmmount = scrollAmmountInput.value;
-  scrollAmmountInput.placeholder = scrollAmmountInput.value;
-  scrollAmmountInput.value = "";
-  speedInput.placeholder = speedInput.value;
-  speedInput.value = "";
+  if (scrollAmmountInput.value.length > 0) {
+    localStorage.setItem("scrollAmmount", scrollAmmountInput.value + "");
+    scrollAmmount = scrollAmmountInput.value;
+    scrollAmmountInput.placeholder = scrollAmmountInput.value;
+    scrollAmmountInput.value = "";
+  }
+  if (speedInput.value.length > 0) {
+    localStorage.setItem("currentTime", speedInput.value + "");
+    currentTime = speedInput.value;
+    speedInput.placeholder = speedInput.value;
+    speedInput.value = "";
+  }
   setBtn.disabled = true;
 });
 
