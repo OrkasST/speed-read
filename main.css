@@ -9,20 +9,24 @@
   height: 100%;
   width: 0%;
   background-color: blue;
-  transition: 100ms;
+  transition: 200ms;
 }
-
+body {
+  background: #fff;
+}
 .book {
   position: absolute;
   top: 20vh;
   left: 50%;
   transform: translate(-50%);
-  width: 60vh;
+  width: 37rem;
   padding: 1rem;
   height: 10vh;
   border: 1px solid #000;
   overflow-y: auto;
   font-size: 1.5rem;
+  z-index: 2;
+  background: inherit;
 }
 
 .options {
@@ -53,10 +57,13 @@
 @media screen and (max-width: 400px) {
   .book {
     position: absolute;
-    top: 50vh;
+    top: 53vh;
     width: 90vw;
     height: 10vh;
     overflow-y: auto;
     font-size: 1.1rem;
+  }
+  .options {
+    margin-top: 2rem;
   }
 }
