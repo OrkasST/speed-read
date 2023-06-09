@@ -58,6 +58,9 @@ pauseBtn.addEventListener("click", () => {
 setBtn.addEventListener("click", () => {
   localStorage.setItem("scrollAmmount", scrollAmmountInput.value + "");
   localStorage.setItem("currentTime", speedInput.value + "");
+  scrollAmmount = scrollAmmountInput.value;
+
+  setBtn.disabled = true;
 });
 
 function setMainTimer(time = 2000) {
@@ -85,9 +88,11 @@ function setTimer(time = 200) {
 
 speedInput.addEventListener("focusout", () => {
   setTimer(speedInput.value);
+  setBtn.disabled = false;
 });
 
 scrollAmmountInput.addEventListener("input", () => {
   console.log(scrollAmmountInput.value);
   display.scroll({ top: scrollAmmountInput.value * scrollDistance });
+  setBtn.disabled = false;
 });
