@@ -8,6 +8,8 @@ const startBtn = document.getElementById("startBtn");
 const pauseBtn = document.getElementById("pauseBtn");
 const setBtn = document.getElementById("setBtn");
 const scrollAmmountInput = document.getElementById("scrollAmmount");
+const scrollDistanceDisplay = document.getElementById("scrollDistance");
+const scrollSpeed = document.getElementById("scrollSpeed");
 
 let file = null;
 let reader = new FileReader();
@@ -16,6 +18,12 @@ let scrollTimer = null,
 let scrollAmmount = localStorage.getItem("scrollAmmount") || 0;
 let currentTime = localStorage.getItem("currentTime") || 5000;
 let scrollDistance = 64;
+
+function displayData() {
+  scrollDistanceDisplay.innerText = scrollDistance;
+  scrollSpeed.innerText = currentTime;
+}
+displayData();
 
 parceBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -40,6 +48,8 @@ parceBtn.addEventListener("click", (e) => {
   };
 });
 
+// >>> 1 control buttons
+
 startBtn.addEventListener("click", () => {
   pauseBtn.disabled = false;
   startBtn.disabled = true;
@@ -55,13 +65,8 @@ pauseBtn.addEventListener("click", () => {
   localStorage.setItem("currentTime", currentTime + "");
 });
 
-setBtn.addEventListener("click", () => {
-  localStorage.setItem("scrollAmmount", scrollAmmountInput.value + "");
-  localStorage.setItem("currentTime", speedInput.value + "");
-  scrollAmmount = scrollAmmountInput.value;
-
-  setBtn.disabled = true;
-});
+// <<< 1
+// >>> 2 Timers
 
 function setMainTimer(time = 2000) {
   if (!!mainTimer) clearInterval(mainTimer);
@@ -76,6 +81,7 @@ function setMainTimer(time = 2000) {
 function setTimer(time = 200) {
   if (!!scrollTimer) clearInterval(scrollTimer);
   currentTime = time;
+  displayData();
   scrollTimer = setInterval(() => {
     console.log("scroll");
     display.scroll({ top: scrollDistance * scrollAmmount });
@@ -85,8 +91,27 @@ function setTimer(time = 200) {
     localStorage.setItem("currentTime", currentTime + "");
   }, time);
 }
+// <<< 2
+
+// >>> 3 options
+
+setBtn.addEventListener("click", () => {
+  scrollAmmountInput.value.length > 0
+    ? localStorage.setItem("scrollAmmount", scrollAmmountInput.value + "")
+    : localStorage.setItem("scrollAmmount", scrollAmmount);
+  speedInput.value.length > 0
+    ? localStorage.setItem("currentTime", speedInput.value + "")
+    : localStorage.setItem("currentTime", currentTime);
+  scrollAmmount = scrollAmmountInput.value;
+
+  setBtn.disabled = true;
+});
 
 speedInput.addEventListener("focusout", () => {
+  if (speedInput.value.length === 0) return;
+  currentTime = speedInput.value;
+  displayData();
+  if (display.innerText === "") return;
   setTimer(speedInput.value);
   setBtn.disabled = false;
 });
@@ -96,3 +121,5 @@ scrollAmmountInput.addEventListener("input", () => {
   display.scroll({ top: scrollAmmountInput.value * scrollDistance });
   setBtn.disabled = false;
 });
+
+// <<< 3

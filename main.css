@@ -29,8 +29,21 @@
   display:flex;
   flex-direction: column;
   width: 12rem;
+  margin-top: 7rem;
+}
+
+#functional, #visual {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  height: 3rem;
+  border-bottom: 1px solid #000;
+  /* align-items: center; */
+  cursor: pointer;
+  transition: 100ms;
+  margin-bottom: 2rem;
+  margin-top: -2rem;
   gap: 0.8rem;
-  margin-top: 3rem;
 }
 
 ._hidden {
