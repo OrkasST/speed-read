@@ -52,6 +52,7 @@ parceBtn.addEventListener("click", (e) => {
     console.log("Done");
     let bookText = reader.result.split("<binary")[0];
     display.innerHTML = bookText;
+    display.scroll({ top: scrollAmmount * scrollDistance });
     startBtn.disabled = false;
     setTimeout(() => progressbar.classList.add("_hidden"), 100);
   };
@@ -60,7 +61,6 @@ parceBtn.addEventListener("click", (e) => {
 // >>> 1 control buttons
 
 startBtn.addEventListener("click", () => {
-  display.scroll({ top: scrollAmmountInput.value * scrollDistance });
   pauseBtn.disabled = false;
   startBtn.disabled = true;
   setMainTimer(210000);
