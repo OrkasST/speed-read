@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read Faster</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <label for="Load">Load file</label>
+  <input type="file" name="Load" id="fileLoad" accept=".fb2, .txt, .doc, .docx"><Br></Br>
+  <button id="parceFile">Parce File</button>
+  <div id="progressbar" class="_hidden">
+    <div id="percent"></div>
+  </div>
+
+  <div class="book" id="display"></div>
+  <div class="options">
+    <div>
+      <input type="number" name="scrollSpeed" id="speedInput" placeholder="200">
+      <label for="scrollSpeed">Time to sroll</label>
+    </div>
+    <div>
+      <input type="number" name="mainSpeed" id="mainSpeedInput" placeholder="Not available now..." disabled>
+      <label for="scrollSpeed">Time to text speed up</label>
+    </div>
+    <div>
+      <input type="number" name="scrollAmmount" id="scrollAmmount" placeholder="Type...">
+      <label for="scrollAmmount">Ammount of scrolls</label>
+    </div>
+    <button disabled="disabled" id="setBtn">Set</button>
+    <div>
+      <button disabled="disabled" id="startBtn">Start</button>
+      <button disabled="disabled" id="pauseBtn">Pause</button>
+    </div>
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+
+</html>
